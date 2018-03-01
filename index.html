@@ -6,81 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
-        * {
-            margin: 0px;
-            padding: 0px;
-        }
-        .calendar {
-            width: 552px;
-            height: 294px;
-            margin: 100px auto;
-            font-family: "微软雅黑";
-        }
-        .title {
-            width: 552px;
-            height: 152px;
-            background: #1abc9c;
-            position: relative;
-            text-align: center;
-        }
-        .title #left{
-            width: 20px;
-            height: 20px;
-            background: url("images/left.png") no-repeat;
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            margin-top: -10px;
-        }
-        .title #right{
-            width: 20px;
-            height: 20px;
-            background: url("images/right.PNG") no-repeat;
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            margin-top: -10px;
-        }
-        .title #now {
-            position: absolute;
-            top: 50%;
-            margin-top: -20px;
-            margin-left: -35px;
-            color: #ffffff;
-        }
-        .content .week {
-            width: 552px;
-            height: 31px;
-            background: #dddddd;
-            display: flex;
-        }
-        li {
-            width: 78px;
-            list-style: none;
-            float: left;
-            text-align: center;
-        }
-        .week li {
-            line-height: 31px;
-            color: #888d91;
-        }
-        .content .day {
-            width: 552px;
-            height: 130px;
-            background: #eeeeee;
-            box-sizing: border-box;
-        }
-        .day li a{
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            text-decoration: none;
-            text-align: center;
-            color: #8f8d99;
-            font-size: 11px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="calendar">
@@ -91,7 +17,7 @@
             <a id="right" href="#"></a>
         </div>
         <!--内容部分-->
-        <div class="content">
+        <div id="content">
             <ul class="week">
                 <li>Mo</li>
                 <li>Tu</li>
@@ -101,117 +27,9 @@
                 <li>Sa</li>
                 <li>Su</li>
             </ul>
-            <ul class="day">
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">6</a></li>
-                <li><a href="#">7</a></li>
-                <li><a href="#">8</a></li>
-                <li><a href="#">9</a></li>
-                <li><a href="#">10</a></li>
-                <li><a href="#">11</a></li>
-                <li><a href="#">12</a></li>
-                <li><a href="#">13</a></li>
-                <li><a href="#">14</a></li>
-                <li><a href="#">15</a></li>
-                <li><a href="#">16</a></li>
-                <li><a href="#">17</a></li>
-                <li><a href="#">18</a></li>
-                <li><a href="#">19</a></li>
-                <li><a href="#">20</a></li>
-                <li><a href="#">21</a></li>
-                <li><a href="#">22</a></li>
-                <li><a href="#">23</a></li>
-                <li><a href="#">24</a></li>
-                <li><a href="#">25</a></li>
-                <li><a href="#">26</a></li>
-                <li><a href="#">27</a></li>
-                <li><a href="#">28</a></li>
-                <li><a href="#">29</a></li>
-                <li><a href="#">30</a></li>
-                <li><a href="#">31</a></li>
-            </ul>
         </div>
     </div>
 
-    <script>
-        var now = document.getElementById('now');
-        var day = document.getElementsByClassName('day')[0];
-        var dayLi = day.getElementsByTagName('li');
-        var days = day.getElementsByTagName('a');
-        var left = document.getElementById('left');
-        var right = document.getElementById('right');
-        var d = new Date();
-        var monthLetter = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-        var date = {
-            year: d.getFullYear(),
-            month: [d.getMonth()+1, monthLetter[d.getMonth()]],
-            day: d.getDate(),
-            week: d.getDay()
-        }
-        console.log(date);
-        var changeMonth = date.month[0];
-        var changeYear = date.year;
-
-
-        days[date.day-1].style.background = '#1abc9c';
-        now.innerHTML = '';
-        now.innerHTML = monthLetter[d.getMonth()] + '</br>' + date.year;
-        for(var i=0; i<days.length; i++) {
-            if(parseInt(days[i].textContent)>=date.day) {
-                days[i].addEventListener('click', function () {
-                    for(var j=0; j<days.length; j++) {
-                        days[j].style.background = '#eeeeee';
-                    }
-                    this.style.background = '#1abc9c';
-                    date.day = parseInt(this.textContent);
-                }, false);
-            }
-
-            days[i].addEventListener('mouseover', function () {
-                if(parseInt(this.textContent) != date.day) {
-                    this.style.background = 'orange';
-                }
-            }, false);
-            days[i].addEventListener('mouseout', function () {
-                if(parseInt(this.textContent) != date.day) {
-                    this.style.background = '#eeeeee';
-                }
-            }, false);
-
-        }
-
-        left.addEventListener('click', function () {
-
-            now.innerHTML = '';
-            changeMonth--;
-            if(changeMonth == 0) {
-                changeYear--;
-                now.innerHTML = 'December' + '</br>' + changeYear;
-                changeMonth = 12;
-            } else {
-                now.innerHTML = monthLetter[changeMonth-1] + '</br>' + changeYear;
-            }
-
-        }, false);
-
-        right.addEventListener('click', function () {
-
-            now.innerHTML = '';
-            changeMonth++;
-            if(changeMonth == 13) {
-                changeYear++;
-                now.innerHTML = 'January' + '</br>' + changeYear;
-                changeMonth = 1;
-            } else {
-                now.innerHTML = monthLetter[changeMonth-1] + '</br>' + changeYear;
-            }
-
-        }, false);
-
-    </script>
+    <script src="index.js"></script>
 </body>
 </html>
