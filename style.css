@@ -1,0 +1,74 @@
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+.calendar {
+    width: 552px;
+    height: 294px;
+    margin: 100px auto;
+    font-family: "微软雅黑";
+}
+.title {
+    width: 552px;
+    height: 152px;
+    background: #1abc9c;
+    position: relative;
+    text-align: center;
+}
+.title #left{
+    width: 20px;
+    height: 20px;
+    background: url("images/left.png") no-repeat;
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    margin-top: -10px;
+}
+.title #right{
+    width: 20px;
+    height: 20px;
+    background: url("images/right.PNG") no-repeat;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    margin-top: -10px;
+}
+.title #now {
+    position: absolute;
+    top: 50%;
+    margin-top: -20px;
+    margin-left: -35px;
+    color: #ffffff;
+}
+#content .week {
+    width: 552px;
+    height: 31px;
+    background: #dddddd;
+    display: flex;
+}
+li {
+    width: 78px;
+    list-style: none;
+    float: left;
+    text-align: center;
+}
+.week li {
+    line-height: 31px;
+    color: #888d91;
+}
+#content .day {
+    width: 552px;
+    height: 150px;
+    background: #eeeeee;
+    box-sizing: border-box;
+}
+.day li a{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    text-decoration: none;
+    text-align: center;
+    color: #8f8d99;
+    font-size: 11px;
+}
